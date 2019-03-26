@@ -52,6 +52,9 @@ public class Server {
 
     public User login(String name, String passWord) {
         User toLogin = center.getUser(name);
+        if (toLogin == null) {
+            return null;
+        }
         if (toLogin.getPassWord().equals(passWord)) {
             return toLogin;
         }

@@ -20,6 +20,10 @@ public class UserCenter {
     }
 
     public User getUser(String name) {
-        return impl.getUserByName(name);
+        try {
+            return impl.getUserByName(name);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
