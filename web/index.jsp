@@ -29,22 +29,24 @@
   </label>
     <br>
     PassWord: <label>
-    <input type="text" name="password"/>
+    <input type="password" name="password"/>
   </label>
     <br>
     <input type="submit" value="Confirm">
   </form>
 
-    <% if (user == null) { %>
-      <% if (passWord != null) { %>
-        您输入的账号或密码有误
-      <% } %>
-    <%} else {
-      session.setAttribute("user", user);
-      String site = "Result.jsp" ;
-      response.setStatus(response.SC_MOVED_TEMPORARILY);
-      response.setHeader("Location", site);
-    } %>
+    <%
+      if (user == null) {
+        if (passWord != null) {
+        out.println("您输入的账号或密码有误");
+        }
+      } else {
+        session.setAttribute("user", user);
+        String site = "Welcome.jsp" ;
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+      }
+    %>
 
   </body>
 </html>

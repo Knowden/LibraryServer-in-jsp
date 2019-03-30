@@ -28,7 +28,10 @@ public class Server {
 
     public ArrayList<Book> inquireBooks(ISBN isbn) {
         ArrayList<Book> result = new ArrayList<>();
-        result.add(library.getBookByIsbn(isbn));
+        Book book = library.getBookByIsbn(isbn);
+        if (book != null) {
+            result.add(book);
+        }
         return result;
     }
 

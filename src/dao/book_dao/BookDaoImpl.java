@@ -114,7 +114,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
             }
             else {
                 closeAll(connection, check, rst);
-                throw new IllegalArgumentException("The Book Not Exist!");
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,21 +132,13 @@ public class BookDaoImpl extends BaseDao implements BookDao {
             check.setObject(1, pattern);
             check.setObject(2, pattern);
             ResultSet rst = check.executeQuery();
-            if (rst.next()) {
-                ArrayList<Book> books = new ArrayList<>();
+            ArrayList<Book> books = new ArrayList<>();
+            while (rst.next()) {
                 String isbn = rst.getString("book_isbn");
                 books.add(getBookByISBN(new ISBN(isbn)));
-                while (rst.next()) {
-                    isbn = rst.getString("book_isbn");
-                    books.add(getBookByISBN(new ISBN(isbn)));
-                }
-                closeAll(connection, check, rst);
-                return books;
             }
-            else {
-                closeAll(connection, check, rst);
-                throw new IllegalArgumentException("The Book Not Found!");
-            }
+            closeAll(connection, check, rst);
+            return books;
         } catch (SQLException e) {
             e.printStackTrace();
         }

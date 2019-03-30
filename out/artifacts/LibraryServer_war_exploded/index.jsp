@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>Title</title>
+    <title>LibraryServer</title>
   </head>
   <h1> Welcome to This LibrarySever System</h1>
   <body>
@@ -29,7 +29,7 @@
   </label>
     <br>
     PassWord: <label>
-    <input type="text" name="password"/>
+    <input type="password" name="password"/>
   </label>
     <br>
     <input type="submit" value="Confirm">
@@ -41,7 +41,7 @@
       <% } %>
     <%} else {
       session.setAttribute("user", user);
-      String site = "Result.jsp" ;
+      String site = "Welcome.jsp" ;
       response.setStatus(response.SC_MOVED_TEMPORARILY);
       response.setHeader("Location", site);
     } %>
